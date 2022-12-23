@@ -86,15 +86,16 @@ void	Account::makeDeposit( int deposit ) {
 		<< this->_nbDeposits << std::endl;
 }
 
-int		Account::checkAmount( void ) const {
+int		Account::checkAmount( void ) const 
+{
 	if (this->_amount < 0)
 		std::cout << "withdrawal:refused" << std::endl;
 	return (this->_amount);
 }
 
-bool	Account::makeWithdrawal( int withdrawl ) {
-	int	p_amount;
-	
+bool	Account::makeWithdrawal( int withdrawl ) 
+{
+	int	p_amount;	
 
 	p_amount = this->_amount;
 	this->_amount -= withdrawl;
