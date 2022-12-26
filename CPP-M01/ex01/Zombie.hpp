@@ -16,6 +16,7 @@ public:
 
 	void	announce( void ) const;
 	int		getHordeSize( void ) const;
+	void	incHordeSize( void );
 
 private:
 	static int	_horde_size;
