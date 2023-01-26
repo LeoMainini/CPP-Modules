@@ -49,7 +49,7 @@ DFLAGS = -ggdb -fsanitize=leak
 
 INC = -I .
 
-NAME	= pewpew
+NAME	= sedboy
 
 all:	$(NAME)
 
