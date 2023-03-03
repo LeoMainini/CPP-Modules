@@ -33,7 +33,7 @@ IPurple		= \033[0;95m
 ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
-SRCS	= main.cpp ClapTrap.cpp
+SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
@@ -49,7 +49,7 @@ DFLAGS = -ggdb -fsanitize=leak
 
 INC = -I .
 
-NAME	= ct
+NAME	= st
 
 all:	$(NAME)
 

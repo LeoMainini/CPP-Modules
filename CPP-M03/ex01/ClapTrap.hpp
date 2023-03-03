@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:26:00 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/03 16:28:51 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:21:34 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class ClapTrap
 {
 
-	private:
+	protected:
 		std::string name;
 		int			health;
 		int			energy;

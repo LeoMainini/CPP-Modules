@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 17:03:49 by leferrei          #+#    #+#             */
+/*   Updated: 2023/03/03 17:35:56 by leferrei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(std::string name): name(name), health(10), energy(10), damage(0) {
@@ -10,12 +22,12 @@ ClapTrap::ClapTrap(): name("default"), health(10), energy(10), damage(0) {
 
 ClapTrap::ClapTrap(const ClapTrap &ct): name(ct.name), health(ct.health),
 	energy(ct.energy), damage(ct.damage) {
-	std::cout << "ClapTrap copy constructor called! " << ct.name << "has been duplicated!" << std::endl;
+	std::cout << "ClapTrap copy constructor called! " << ct.name << " has been duplicated!" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator = (const ClapTrap &ct)
 {
-	std::cout << "ClapTrap assignement constructor called! " << ct.name << "has been duplicated!" << std::endl;
+	std::cout << "ClapTrap assignement constructor called! " << ct.name << " has been duplicated!" << std::endl;
 	if (this == &ct)
 		return (*this);
 	this->name = ct.name;
@@ -39,7 +51,6 @@ void ClapTrap::attack(const std::string& target)
 	this->energy --;
 	std::cout << this->name << " attacks " << target << ", causing " << this->damage
 		<< " points of damage! Energy left " << this->energy << std::endl;
-	
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
