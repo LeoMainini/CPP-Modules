@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:45:01 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/06 16:16:42 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:40:18 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &st):
 
 DiamondTrap &DiamondTrap::operator = (const DiamondTrap &ct)
 {
-	std::cout << "DiamondTrap assignement constructor called! " << ct.name << " has been duplicated!" << std::endl;
+	std::cout << "DiamondTrap copy assignement called! " << ct.name << " has been duplicated!" << std::endl;
 	if (this == &ct)
 		return (*this);
 	this->name = ct.name;

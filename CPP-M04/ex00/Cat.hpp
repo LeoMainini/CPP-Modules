@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 17:00:59 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/06 14:16:17 by leferrei         ###   ########.fr       */
+/*   Created: 2023/03/07 15:27:00 by leferrei          #+#    #+#             */
+/*   Updated: 2023/03/07 16:17:21 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAV_TRAP_H
-# define SCAV_TRAP_H
+#ifndef	CAT_H	
+# define CAT_H
 
-#include "ClapTrap.hpp"
+# include "Animal.hpp"
 
-class ScavTrap: public ClapTrap
+class Cat: public Animal
 {
 	public:
-		ScavTrap();
-		ScavTrap(const ScavTrap &ct);
-		ScavTrap(std::string name);
-		ScavTrap &operator = (const ScavTrap &ct);
-		~ScavTrap();
-		void	attack(const std::string& target);
-		void	guardGate();
+		Cat( void );
+		Cat( const Cat &a);
+		Cat &operator= (const Cat &a);
+		~Cat( void );
 };
 
 #endif
