@@ -6,17 +6,17 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:31:21 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/07 17:53:22 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:35:33 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
 Cat::Cat( void ): Animal(), bb(new (std::nothrow) Brain()){
-	std::cout << "Cat in construction..... ";
+	std::cout << " - cat in construction..... ";
 	if (bb)
 	{
-		std::cout << " Done" << std::endl;
+		std::cout << "Done" << std::endl;
 		_type = "Cat";
 	}
 	else
@@ -25,10 +25,7 @@ Cat::Cat( void ): Animal(), bb(new (std::nothrow) Brain()){
 		_type = "NULL";
 	}
 }
-Cat::Cat( const Cat &a) {
-	std::cout << "Cat constructed" << std::endl;
-	*this = a;
-}
+
 Cat &Cat::operator = (const Cat &a) {
 	std::cout << "Cat assigned" << std::endl;
 	if (this != &a)
@@ -37,14 +34,24 @@ Cat &Cat::operator = (const Cat &a) {
 			delete (bb);
 		bb = new (std::nothrow) Brain();
 		if (bb)
-			bb = a.bb;
+			*bb = *a.bb;
 		else
 			std::cout << "Brain copy allocation failed" << std::endl;
 		Animal::_type = a.get_type();
 	}
 	return (*this);
 }
+
+Cat::Cat( const Cat &a) {
+	std::cout << "Cat constructed" << std::endl;
+	*this = a;
+}
+
 Cat::~Cat( void ) {
 	delete bb;
 	std::cout << "Cat destructed" << std::endl;
+}
+
+void	Cat::makeSound( void ) const {
+	std::cout << "MIAAAAWOOOOOOOO0" << std::endl;
 }

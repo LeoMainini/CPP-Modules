@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:55:58 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/07 16:13:11 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:15:16 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Animal
 		Animal( void );
 		Animal( const Animal &a);
 		Animal &operator= (const Animal &a);
-		~Animal( void );
-		void	makeSound( void ) const;
+		virtual ~Animal( void );
+		virtual void	makeSound( void ) const;
 		const std::string &get_type( void ) const;
 };
 
