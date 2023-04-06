@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:05:52 by leferrei          #+#    #+#             */
-/*   Updated: 2023/02/17 19:58:43 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:03:44 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ std::cout << "(a * b) " << (a * b) << std::endl;
 std::cout << "(a / b) " << (a / b) << std::endl;
 
 a = Fixed(0);
-b = Fixed( Fixed( 5.05f ) * Fixed( 2 ) );
+b = Fixed( Fixed( 5.05f ) + Fixed( 2 ) );
 std::cout << "initial a " << a << std::endl;
 std::cout << "value of ++a " << ++a << std::endl;
 std::cout << "value of a after ++a " << a << std::endl;

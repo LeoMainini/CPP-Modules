@@ -9,7 +9,7 @@ Fixed::Fixed( void )
 	std::cout << "Constructor called\n";
 }
 
-Fixed::Fixed( const float num ) : integral( num * (1 << this->decimal))
+Fixed::Fixed( const float num ) : integral(roundf(num * (1 << this->decimal)))
 {
 	std::cout << "Float constructor called\n";
 }
