@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 17:00:59 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/06 14:53:56 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/07 19:31:21 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ class ScavTrap: virtual public ClapTrap
 		ScavTrap();
 		ScavTrap(const ScavTrap &ct);
 		ScavTrap(std::string name);
-		ScavTrap &operator = (const ScavTrap &ct);
 		~ScavTrap();
-		void	attack(const std::string& target);
-		void	guardGate();
+		int			getEnergy( void );
+		ScavTrap	&operator = (const ScavTrap &ct);
+		void		attack(const std::string& target);
+		void		guardGate();
 };
 
 #endif

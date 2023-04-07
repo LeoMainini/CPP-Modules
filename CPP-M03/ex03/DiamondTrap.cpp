@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:45:01 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:18 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/07 19:44:52 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ DiamondTrap::DiamondTrap():
 }
 
 DiamondTrap::DiamondTrap(std::string name):
-	ClapTrap(name.substr(0, name.length()).append("_clap_name")),
-	ScavTrap(name.substr(0, name.length()).append("_clap_name")),
-	FragTrap(name.substr(0, name.length()).append("_clap_name")),
-	name(name)
+	ClapTrap(name.append("_clap_name")),
+	ScavTrap(name),
+	FragTrap(name),
+	name(name.substr(0, name.length() - 10 ))
 {
+	ScavTrap tmp("temp");
+	
 	this->health = FragTrap::health;
+	this->energy = tmp.getEnergy();
 	this->damage = FragTrap::damage;
-	this->energy = ScavTrap::energy;
+	std::cout << "DiamondTrap " << this->name << " constructed" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &st): 
@@ -37,10 +40,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &st):
 	ScavTrap(st),
 	FragTrap(st)
 {
-	this->damage = st.damage;
-	this->health = st.health;
-	this->energy = st.energy;
-	this->name = st.name;
+	*this = st;
 	std::cout << "DiamondTrap copy constructor called! " << st.name << " has been duplicated!" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 17:03:41 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/06 16:10:13 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/07 19:31:46 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,5 @@ void	ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode" << std::endl;
 }
+
+int	ScavTrap::getEnergy( void ) { return (energy); }
