@@ -2,7 +2,8 @@
 # define FORM_H
 
 # include <iostream>
-# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
 

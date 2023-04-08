@@ -33,13 +33,13 @@ IPurple		= \033[0;95m
 ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
-SRCS	= main.cpp	Bureaucrat.cpp	Form.cpp
+SRCS	= 	Bureaucrat.cpp	Form.cpp	main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
 CC		= c++
 
-CFLAGS	= -Wall -Werror -Werror -g
+CFLAGS	= -Wall -Werror -Werror
 
 CSTD	= -std=c++98
 

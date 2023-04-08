@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
-
-
+#include "Form.hpp"
 // Constructors
 Bureaucrat::Bureaucrat(): _name("default")
 {
@@ -98,10 +97,8 @@ std::string	Bureaucrat::GradeTooLowException::text() const throw ()
 void	Bureaucrat::signForm(const Form &form) const
 {
 	std::cout << _name;
-	Bureaucrat tmp(*this);
-
 	try {
-		form.beSigned(tmp);
+		form.beSigned(Bureaucrat::this);
 		std::cout << " signed " << form.getName();
 	}
 	catch (Form::GradeTooLowException &el){

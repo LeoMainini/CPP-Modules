@@ -6,18 +6,14 @@ using namespace std;
 
 Form::Form():  _name("default"), _gradeReq(150), _execGradeReq(150), _isSigned(0) {
 	cout << "Default Form constructor called" << endl;
-	if (grade > 150)
-		throw(GradeTooLowException());
-	if (grade < 1)
-		throw(GradeTooHighException());
 }
 
 Form::Form(string name, unsigned char gradeRed):
 	_name(name), _gradeReq(gradeRed), _execGradeReq(0), _isSigned(0) 
 {
-	if (grade > 150)
+	if (_gradeReq > 150)
 		throw(GradeTooLowException());
-	if (grade < 1)
+	if (_gradeReq < 1)
 		throw(GradeTooHighException());
 	cout << "Name and Grade constructor called, " << _name << " constructed" << endl;
 }
