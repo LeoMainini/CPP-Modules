@@ -103,10 +103,10 @@ void	Bureaucrat::signForm(Form &form) const
 		std::cout << " signed " << form.getName();
 	}
 	catch (Form::GradeTooLowException &el){
-		std::cout << " couldnt sign" << form.getName() << "because " << el.text();
+		std::cout << " couldnt sign " << form.getName() << " because " << el.text();
 	}
 	catch (Form::FormSignedException &es){
-		std::cout << " couldnt sign" << form.getName() << "because " << es.text();
+		std::cout << " couldnt sign " << form.getName() << " because " << es.text();
 	}
 	std::cout << std::endl;
 }

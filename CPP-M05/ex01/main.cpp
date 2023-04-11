@@ -1,47 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 21:24:38 by leferrei          #+#    #+#             */
+/*   Updated: 2023/04/11 21:28:24 by leferrei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+
 
 int	main(void)
 {
-	{
-		try {
-			Bureaucrat bc("Thommas the fiat 500 alpha", 250);
-		}
-		catch (std::exception &e) {
-			std::cout << "Error" << std::endl;
-		}
-		try {
-			Bureaucrat bc("Thommas the fiat 500 beta", 1);
-		}
-		catch (std::exception &e) {
-			std::cout << "Error" << std::endl;
-		}
-	}
-	{
-		Bureaucrat bc("Thommas the fiat 500");
-		
-		try{
-			bc.setGrade(2);
-			std::cout << bc << std::endl;
-			bc.incGrade();
-			std::cout << bc << std::endl;
-			bc.incGrade();
-		}
-		catch (std::exception &e){
-			std::cout << "Error " << std::endl;
-		}
-	}
-	{
-		Bureaucrat bc("Thommas the fiat 502 electric bogaloo");
-		
-		try{
-			bc.setGrade(149);
-			std::cout << bc << std::endl;
-			bc.decGrade();
-			std::cout << bc << std::endl;
-			bc.decGrade();
-		}
-		catch (Bureaucrat::GradeTooLowException &e){
-			std::cout << "Error: " << e.text() << std::endl;
-		}
-	}
+	Form form("Reginald Formilious III", 105);
+	Bureaucrat bc("Bob \"the donk\" Donkey", 107);
+	bc.signForm(form);
+	while (bc.getGrade() > form.getReqGrade())
+		bc.incGrade();
+	bc.signForm(form);
+	bc.signForm(form);
+	
 }

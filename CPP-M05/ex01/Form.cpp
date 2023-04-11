@@ -26,7 +26,7 @@ Form::Form(const Form &fCopy):
 }
 
 Form::~Form(){
-	cout << "Default destructor called" << endl;
+	cout << "Default form destructor called" << endl;
 }
 
 //Operators 
