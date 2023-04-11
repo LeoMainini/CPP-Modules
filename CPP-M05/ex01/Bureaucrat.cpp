@@ -94,11 +94,12 @@ std::string	Bureaucrat::GradeTooLowException::text() const throw ()
 
 //Functions
 
-void	Bureaucrat::signForm(const Form &form) const
+void	Bureaucrat::signForm(Form &form) const
 {
+
 	std::cout << _name;
 	try {
-		form.beSigned(Bureaucrat::this);
+		form.beSigned(*this);
 		std::cout << " signed " << form.getName();
 	}
 	catch (Form::GradeTooLowException &el){

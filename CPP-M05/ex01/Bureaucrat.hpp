@@ -32,7 +32,7 @@ class Bureaucrat//: public std::exception
 		struct				GradeTooLowException: public std::exception{
 			std::string		text() const throw ();
 		};
-		void				signForm(const Form &form) const;
+		void				signForm(Form &form) const;
 
 	private:
 		const std::string _name;

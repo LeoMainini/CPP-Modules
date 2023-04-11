@@ -23,7 +23,6 @@ Form::Form(const Form &fCopy):
 	_execGradeReq(fCopy.getExecReqGrade()), _isSigned(fCopy.isSigned())
 {
 	cout << "Copy constructor called" << endl;
-	// *this = fCopy;
 }
 
 Form::~Form(){
@@ -56,7 +55,7 @@ const unsigned char	Form::getReqGrade() const { return _gradeReq; }
 const unsigned char	Form::getExecReqGrade() const { return _execGradeReq; }
 
 //Functions
-void				Form::beSigned(const Bureaucrat &signy) {
+const void			Form::beSigned(const Bureaucrat &signy) {
 	if (signy.getGrade() > _gradeReq)
 		throw (GradeTooLowException());
 	if (_isSigned)
