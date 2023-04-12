@@ -1,11 +1,12 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
+#include "colors.h"
 
 using namespace std;
 //Constructors
 
 Form::Form():  _name("default"), _gradeReq(150), _execGradeReq(150), _isSigned(0) {
-	cout << "Default Form constructor called" << endl;
+	cout << Brown << "Default Form constructor called" << NC << endl;
 }
 
 Form::Form(string name, unsigned char gradeRed):
@@ -15,7 +16,7 @@ Form::Form(string name, unsigned char gradeRed):
 		throw(GradeTooLowException());
 	if (_gradeReq < 1)
 		throw(GradeTooHighException());
-	cout << "Name and Grade constructor called, " << _name << " constructed" << endl;
+	cout <<  Brown << "Name and Grade constructor called, " << _name << " constructed" << NC << endl;
 }
 
 Form::Form(const Form &fCopy):
@@ -32,8 +33,8 @@ Form::~Form(){
 //Operators 
 Form &Form::operator= (const Form &fAssign)
 {
-	// if (this != &fAssign)
-	// 	this = &fAssign;
+	if (this != &fAssign)
+		_isSigned = fAssign.isSigned();
 	return  (*this);
 }
 
