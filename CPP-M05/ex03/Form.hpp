@@ -18,7 +18,7 @@ class AForm {
 		AForm(std::string name, const unsigned char gradeReq, const unsigned char execGradeReq);
 		AForm(const AForm &fCopy);
 		AForm &operator= (const AForm &fAssign);
-		~AForm();
+		virtual ~AForm();
 		bool				isSigned() const;
 		const std::string	getName() const;
 		const unsigned char	getReqGrade() const;

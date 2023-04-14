@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:24:38 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/13 18:19:21 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:00:33 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 using namespace std;
 
 int	main(void)
 {
-	ShrubberyCreationForm form("Reginald Formilious IIIs home");
-	RobotomyRequestForm robo("Roboticus Arnelious Jr.");
+	ShrubberyCreationForm	form("Reginald Formilious IIIs home");
+	RobotomyRequestForm		robo("Roboticus Arnelious Jr.");
 	PresidentialPardonForm	bush("George HW Bush in Epsteins island");
-	Bureaucrat bc("Bob \"the donk\" Donkey", 107);
+	Bureaucrat				bc("Bob \"the donk\" Donkey", 107);
+	Intern					test;
 	bc.signForm(form);
 	form.execute(bc);
 	bc.setGrade(48);
@@ -38,4 +40,9 @@ int	main(void)
 	bc.setGrade(4);
 	bc.signForm(bush);
 	bush.execute(bc);
+	AForm *formilious = test.makeForm("Roberticus      Maximiluous", "The IIIrd The Stinky The Giornos");
+	formilious = test.makeForm("Presidential Pardon", "Edward Snwoden and his leaks of the wiki");
+	bc.signForm(*formilious);
+	formilious->execute(bc);
+	delete formilious;
 }

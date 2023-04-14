@@ -2,16 +2,25 @@
 # define INTERN_H
 # include <iostream>
 
-class AForm;
+class	AForm;
+class	RobotomyRequestForm;
+class	PresidentialPardonForm;
+class	ShrubberyCreationForm;
 
 class Intern
 {
+
 private:
-	/* data */
+	AForm		*makeRRF(const std::string &formName);
+	AForm		*makePPF(const std::string &formName);
+	AForm		*makeSCF(const std::string &formName);
+	std::string	*formatType(const std::string &formType) const;
+
+
 public:
 	Intern();
 	~Intern();
-	AForm	*makeForm(std::string formType, std::string formName);
+	AForm	*makeForm(const std::string &formType, const std::string &formName);
 	
 
 };

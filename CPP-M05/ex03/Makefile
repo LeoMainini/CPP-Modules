@@ -34,7 +34,7 @@ ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
 SRCS	= 	Bureaucrat.cpp	Form.cpp	ShrubberyCreationForm.cpp	main.cpp	\
-			RobotomyRequestForm.cpp		PresidentialPardonForm.cpp
+			RobotomyRequestForm.cpp		PresidentialPardonForm.cpp	Intern.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
