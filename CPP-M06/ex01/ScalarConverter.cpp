@@ -4,7 +4,7 @@ using namespace std;
 
 static	int	find_entry(long &array, long entry, unsigned int size)
 {
-	for (i = 0; i < size; i++)
+	for (int i = 0; i < (int)size; i++)
 		if (array[i] == entry)
 			return (i);
 	return (-1);
@@ -12,7 +12,7 @@ static	int	find_entry(long &array, long entry, unsigned int size)
 
 static unsigned int	get_last_entry_index(long &array, long entry, unsigned int size)
 {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < (int)size; i++)
 		if (array[i] == 0)
 			return (i);
 	return (-1);
@@ -38,9 +38,9 @@ static	int	str_nchar(string &exp, char c)
 			last_positions[current_addr_pos] = -1;
 		}
 		else
-			current_addr_pos = find_entry((long &)array, (long)&exp, 128);
+			current_addr_pos = find_entry((long &)str_addresses, (long)&exp, 128);
 	}
-	str_addresses[current_addr_pos] = &exp;
+	str_addresses[current_addr_pos] = (long)&exp;
 	for (int i = last_positions[current_addr_pos] + 1;
 		((last_positions[current_addr_pos] > -1 && exp[last_positions[current_addr_pos]] != 0)
 			|| last_positions[current_addr_pos] == -1) && exp[i];
