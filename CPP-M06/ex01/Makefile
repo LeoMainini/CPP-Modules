@@ -33,7 +33,7 @@ IPurple		= \033[0;95m
 ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
-SRCS	= 	ScalarConverter.cpp	main.cpp
+SRCS	= 	ScalarConverter.cpp	main.cpp string_checks.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
