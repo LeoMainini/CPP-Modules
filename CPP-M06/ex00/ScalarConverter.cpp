@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:21:46 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/20 22:13:44 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/20 23:01:53 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ScalarConverter::double_converter(string &exp)
 
 	cout << "float: ";
 	strtof(exp.c_str(), 0);
-	errno != ERANGE ? cout << static_cast<float>(dValue) : cout << "Impossible";
+	errno != ERANGE ? cout << setprecision(1) << static_cast<float>(dValue) << 'f': cout << "Impossible";
 	cout << endl;
 
 	cout << "double: " << setprecision(1) << (dValue) << endl;
@@ -117,7 +117,7 @@ void	ScalarConverter::convert_to_n(string &exp, int type_i)
 		double_converter(exp);
 		break;
 	default:
-		cout << LightRed << "Error: expression \'" << exp << "\' unrecognized" << NC << endl;
+		cout << LightRed << " Error: " << NC << "expression \'" << exp << "\' unrecognized" << endl;
 		break;
 	}
 }

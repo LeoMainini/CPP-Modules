@@ -58,7 +58,7 @@ string	get_type(string &exp)
 	else if (exp.find_first_of(".e") == string::npos)
 		return ("int");
 	else if (exp.find_first_of("f") == string::npos)
-		if (exp.find_last_of("0123456789") < exp.find('.'))
+		if (exp.find('.') && exp.find_last_of("0123456789") < exp.find('.'))
 			return ("undefined");
 		else
 			return ("double");
@@ -70,7 +70,6 @@ string	get_type(string &exp)
 void	format_str(string &exp)
 {
 	int	i;
-
 	i = 0;
 	while (exp[i] && (exp[i] == ' ' || exp[i] == '	'))
 		i++;
