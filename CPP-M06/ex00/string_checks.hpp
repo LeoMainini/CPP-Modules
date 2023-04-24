@@ -6,7 +6,6 @@
 using namespace std;
 
 int		valid_num_str(string &exp);
-string	get_type(string &exp);
 void	format_str(string &exp);
 
 #endif

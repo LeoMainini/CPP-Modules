@@ -12,6 +12,7 @@ class ScalarConverter {
 		static double	dValue;
 		static int		iValue;
 		static char		cValue;
+		static string	get_type(string &exp);
 		static void	int_converter(string &exp);
 		static void	char_converter(string &exp);
 		static void	float_converter(string &exp);

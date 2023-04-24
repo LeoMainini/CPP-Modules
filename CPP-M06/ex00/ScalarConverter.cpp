@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:21:46 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/20 23:03:43 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:32:46 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,29 @@ void	ScalarConverter::convert_to_n(string &exp, int type_i)
 		cout << LightRed << " Error: " << NC << "expression \'" << exp << "\' unrecognized" << endl;
 		break;
 	}
+}
+
+string	ScalarConverter::get_type(string &exp)
+{
+	//int neg = exp[0] == '-' ? 1 : 0;
+	if (exp[0] == 0 || ((exp[0] > 0 && ((exp[0] < '0') || (exp[0] > '9')))
+			&& !exp[1]))
+		return ("char");
+	if (!exp.compare("-inff") || !exp.compare("inff") || !exp.compare("nanf"))
+		return ("float");
+	if (!exp.compare("-inf") || !exp.compare("inf") || !exp.compare("nan"))
+		return ("double");
+	if (!valid_num_str(exp))
+		return ("undefined");
+	else if (exp.find_first_of(".e") == string::npos)
+		return ("int");
+	else if (exp.find_first_of("f") == string::npos)
+		if (exp.find('.') != string::npos && exp.find_last_of("0123456789") < exp.find('.'))
+			return ("undefined");
+		else
+			return ("double");
+	else
+		return ("float");
 }
 
 void	ScalarConverter::converter(string &exp)

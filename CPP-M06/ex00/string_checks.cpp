@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//validated
 int		valid_num_str(string &exp)
 {
 	int	not_exponent = 1;
@@ -41,29 +42,6 @@ int		valid_num_str(string &exp)
 		return (0);
 	//if all conditions fail its a valid string
 	return (1);
-}
-
-string	get_type(string &exp)
-{
-	//int neg = exp[0] == '-' ? 1 : 0;
-	if (exp[0] == 0 || ((exp[0] > 0 && ((exp[0] < '0') || (exp[0] > '9')))
-			&& !exp[1]))
-		return ("char");
-	if (!exp.compare("-inff") || !exp.compare("inff") || !exp.compare("nanf"))
-		return ("float");
-	if (!exp.compare("-inf") || !exp.compare("inf") || !exp.compare("nan"))
-		return ("double");
-	if (!valid_num_str(exp))
-		return ("undefined");
-	else if (exp.find_first_of(".e") == string::npos)
-		return ("int");
-	else if (exp.find_first_of("f") == string::npos)
-		if (exp.find('.') != string::npos && exp.find_last_of("0123456789") < exp.find('.'))
-			return ("undefined");
-		else
-			return ("double");
-	else
-		return ("float");
 }
 
 //validated
