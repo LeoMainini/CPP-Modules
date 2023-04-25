@@ -2,10 +2,8 @@
 #include "colors.h"
 #include <iostream>
 
-using namespace std;
-
 A::A(): Base(){
-	cout << Brown << "Constructed new A instance" << NC << endl;
+	std::cout << Brown << "Constructed new A instance" << NC << std::endl;
 }
 
 A::~A(){}

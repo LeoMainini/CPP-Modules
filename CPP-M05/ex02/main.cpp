@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:24:38 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/13 18:19:21 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:30:46 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-using namespace std;
+
 
 int	main(void)
 {
@@ -31,7 +31,7 @@ int	main(void)
 		robo.execute(bc);
 	}
 	catch (AForm::GradeTooLowException &e){
-		cout << e.text() << endl;
+		std::cout << e.text() << std::endl;
 		bc.setGrade(20);
 	}
 	robo.execute(bc);

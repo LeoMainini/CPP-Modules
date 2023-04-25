@@ -2,11 +2,11 @@
 #include "Bureaucrat.hpp"
 #include "colors.h"
 
-using namespace std;
+
 //Constructors
 
 AForm::AForm():  _name("default"), _gradeReq(150), _execGradeReq(150), _isSigned(0) {
-	cout << Brown << "Default Form constructor called" << NC << endl;
+	std::cout << Brown << "Default Form constructor called" << NC << std::endl;
 }
 
 AForm::AForm(string name, const unsigned char gradeRed, const unsigned char execGradeReq):
@@ -16,18 +16,18 @@ AForm::AForm(string name, const unsigned char gradeRed, const unsigned char exec
 		throw(GradeTooLowException());
 	if (_gradeReq < 1 || _execGradeReq < 1)
 		throw(GradeTooHighException());
-	cout <<  Brown << "Name and Grade constructor called, " << _name << " constructed" << NC << endl;
+	std::cout <<  Brown << "Name and Grade constructor called, " << _name << " constructed" << NC << std::endl;
 }
 
 AForm::AForm(const AForm &fCopy):
 	_name(fCopy.getName()), _gradeReq(fCopy.getReqGrade()),
 	_execGradeReq(fCopy.getExecReqGrade()), _isSigned(fCopy.isSigned())
 {
-	cout << "Copy constructor called" << endl;
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 AForm::~AForm(){
-	cout << Red << "Default form destructor called" << NC << endl;
+	std::cout << Red << "Default form destructor called" << NC << std::endl;
 }
 
 //Operators 
@@ -42,7 +42,7 @@ ostream &operator<< (std::ostream &out, const AForm &form) {
 	out << "form name " << form.getName() << ", grade requires to sign " << form.getReqGrade()
 		<< ", to execute " << form.getExecReqGrade();
 	form.isSigned() ? out << " and it is signed" : out << "and it isnt signed";
-	out << endl;
+	out << std::endl;
 	return (out);
 }
 

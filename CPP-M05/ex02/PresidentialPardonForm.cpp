@@ -2,17 +2,17 @@
 #include "Bureaucrat.hpp"
 #include "colors.h"
 
-using namespace std;
 
-PresidentialPardonForm::PresidentialPardonForm(string target):
+
+PresidentialPardonForm::PresidentialPardonForm(std::string target):
 	AForm(target, 25, 5),
 	_target(target)
 {
-	cout << Brown << "Constructor for PPForm called" << NC << endl;
+	std::cout << Brown << "Constructor for PPForm called" << NC << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
-	cout << Red << "Destructor for PPForm called" << NC << endl;
+	std::cout << Red << "Destructor for PPForm called" << NC << std::endl;
 }
 
 const void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
@@ -25,7 +25,7 @@ const void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 			throw (AForm::GradeTooLowException());
 			break ;
 		default:
-			cout << LightGreen << _target << " has been pardoned by Zaphod Beeblebrox."
-				<<  NC << endl;
+			std::cout << LightGreen << _target << " has been pardoned by Zaphod Beeblebrox."
+				<<  NC << std::endl;
 	}
 }

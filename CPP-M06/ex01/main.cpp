@@ -1,7 +1,7 @@
 #include "Data.hpp"
 #include "Serializer.hpp"
 
-using namespace std;
+
 
 int main( void )
 {
@@ -14,6 +14,6 @@ int main( void )
 	test = Serializer::serialize(&d);
 	testD = Serializer::deserialize(test);
 
-	cout << "address of d = " << &d << ", serialized test = " << test << ", address of deserialized testD = " << testD << endl;
+	std::cout << "address of d = " << &d << ", serialized test = " << test << ", address of deserialized testD = " << testD << std::endl;
 	testD->yell();
 }

@@ -5,7 +5,6 @@
 #include <iostream>
 #include "colors.h"
 
-using namespace std;
 
 Base *generate(void){
 	srand((unsigned)time(NULL));
@@ -23,21 +22,35 @@ Base *generate(void){
 void identify(Base* p)
 {
 	if (dynamic_cast<A *>(p))
-		cout << Cyan << "Pointer is of child class type" << LightCyan << " A" << NC << endl;
+		std::cout << Cyan << "Pointer is of child class type" << LightCyan << " A" << NC << std::endl;
 	if (dynamic_cast<B *>(p))
-		cout << Cyan << "Pointer is of child class type" << LightCyan << " B" << NC << endl;
+		std::cout << Cyan << "Pointer is of child class type" << LightCyan << " B" << NC << std::endl;
 	if (dynamic_cast<C *>(p))
-		cout << Cyan << "Pointer is of child class type" << LightCyan << " C" << NC << endl;
+		std::cout << Cyan << "Pointer is of child class type" << LightCyan << " C" << NC << std::endl;
 }
 
-// void identify(Base& p)
-// {
-
-// }
+void identify(Base& p)
+{
+	try{
+		dynamic_cast<A &>(p);
+		std::cout << Red << "Pointer is of child class type" << LightRed << " A" << NC << std::endl;
+		return ;
+	} catch (std::exception &e){}
+	try{
+		dynamic_cast<B &>(p);
+		std::cout << Red << "Pointer is of child class type" << LightRed << " B" << NC << std::endl;
+		return ;
+	} catch (std::exception &e){}
+	try{
+		dynamic_cast<C &>(p);
+		std::cout << Red << "Pointer is of child class type" << LightRed << " C" << NC << std::endl;
+		return ;
+	} catch (std::exception &e){}
+}
 
 int main(void){
 	Base *instancePtr = generate();
 	identify(instancePtr);
-	// identify(*instancePtr);
+	identify(*instancePtr);
 	delete instancePtr;
 }

@@ -1,16 +1,16 @@
 #include <iostream>
 
-using namespace std;
+
 
 //validated
-int		valid_num_str(string &exp)
+int		valid_num_str(std::string &exp)
 {
 	int	not_exponent = 1;
 	//error out on non numeric expression
-	if (exp.find_first_not_of("0123456789.f-e+") != string::npos)
+	if (exp.find_first_not_of("0123456789.f-e+") != std::string::npos)
 		return (0);
 	//check if exponent and error out if no numbers before or only numbers before
-	if(exp.find_first_of("e") != string::npos)
+	if(exp.find_first_of("e") != std::string::npos)
 		not_exponent = 0;
 	//errpr out on multiple exponents or if no numbers either side of it
 	if(!not_exponent
@@ -19,33 +19,33 @@ int		valid_num_str(string &exp)
 		|| exp.find_first_of("e") != exp.find_last_of("e")))
 		return (0);
 	//error out on multiple - or numbers pre - or if exponent on multiple - after the first or if numbers before first
-	if (not_exponent && exp.find_first_of("-+") != string::npos
+	if (not_exponent && exp.find_first_of("-+") != std::string::npos
 		&& ((exp.find_first_of("-+") != exp.find_last_of("-+"))
 		|| exp.find_first_of("0123456789") < exp.find_first_of("-+")))
 		return (0);
 	//error out if more neg or pos sines arround exponent than 1 behind number
-	if (!not_exponent && exp.find_first_of("-+", 1) != string::npos
+	if (!not_exponent && exp.find_first_of("-+", 1) != std::string::npos
 		&& (exp[exp.find_first_of("-+", 1) - 1] != 'e'
 		|| exp.find_first_of("-+", 1) != exp.find_last_of("-+")
 		|| exp.find_last_of("0123456789") < exp.find_first_of("-+")))
 		return (0);
 	// //error out on multiple . or dots before numbers with no precedent
-	if (exp.find_first_of('.') != string::npos
+	if (exp.find_first_of('.') != std::string::npos
 		&& (exp.find_first_of('.') != exp.find_last_of(".")
 		|| exp.find_first_of("0123456789") > exp.find('.')))
 		return (0);
 	//error out on multiple f or f not last or no decimal part
-	if (exp.find_first_of("f") != string::npos
-		&& (exp.find_first_of(".e") == string::npos
+	if (exp.find_first_of("f") != std::string::npos
+		&& (exp.find_first_of(".e") == std::string::npos
 		|| exp.find_first_of("f") != exp.find_last_of("f")
 		|| exp.find_last_of("0123456789") > exp.find_first_of("f")))
 		return (0);
-	//if all conditions fail its a valid string
+	//if all conditions fail its a valid std::string
 	return (1);
 }
 
 //validated
-void	format_str(string &exp)
+void	format_str(std::string &exp)
 {
 	int	i;
 	i = 0;

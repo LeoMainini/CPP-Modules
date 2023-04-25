@@ -4,7 +4,7 @@
 #include "colors.h"
 #include "fstream"
 
-using namespace std;
+
 
 string tree_ascii(
 "              v .   ._, |_  .,\n"\
@@ -25,12 +25,12 @@ ShrubberyCreationForm::ShrubberyCreationForm(string target):
 	AForm(target, 145, 137),
 	_target(target)
 {
-	cout << Brown << "Constructor for SCForm called" << NC << endl;
+	std::cout << Brown << "Constructor for SCForm called" << NC << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	cout << Red << "Destructor for SCForm called" << NC << endl;
+	std::cout << Red << "Destructor for SCForm called" << NC << std::endl;
 }
 
 const void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
@@ -46,8 +46,8 @@ const void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
 			outStream.open((_target + "_shrubbery").c_str(),
 				ostream::trunc | ostream::out);
 			if (!outStream.fail())
-				outStream << tree_ascii << endl;
+				outStream << tree_ascii << std::endl;
 			outStream.close();
-			cout << executor.getName() << " executed " << getName() << endl;
+			std::cout << executor.getName() << " executed " << getName() << std::endl;
 	}
 }

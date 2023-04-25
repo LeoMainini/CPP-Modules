@@ -3,9 +3,9 @@
 #include <string.h>
 #include <iostream>
 
-using namespace std;
 
-int		valid_num_str(string &exp);
-void	format_str(string &exp);
+
+int		valid_num_str(std::string &exp);
+void	format_str(std::string &exp);
 
 #endif

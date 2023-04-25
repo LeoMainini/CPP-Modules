@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:21:46 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/24 17:32:46 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:45:21 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,87 +20,87 @@
 #include "string_checks.hpp"
 #include "ScalarConverter.hpp"
 
-using namespace std;
+
 float	ScalarConverter::fValue;
 double	ScalarConverter::dValue;
 int		ScalarConverter::iValue;
 char	ScalarConverter::cValue;
 
-static	void	error(string &exp, string type)
+static	void	error(std::string &exp, std::string type)
 {
-	cout << LightRed << " Error: " << NC << exp << " out of range <" << type << ">" << endl;
+	std::cout << LightRed << " Error: " << NC << exp << " out of range <" << type << ">" << std::endl;
 }
 
-void	ScalarConverter::char_converter(string &exp)
+void	ScalarConverter::char_converter(std::string &exp)
 {
-	cout << "char: ";
-	isprint(exp[0]) ? cout << '\'' << exp[0] << '\'' : cout << "Non displayable";
-	cout << endl;
-	cout << "iValue: " << static_cast<int>(exp[0]) << endl;
-	cout << "float: " << setprecision(1) << static_cast<float>(exp[0]) << 'f' << endl;
-	cout << "double: " << setprecision(1) << static_cast<double>(exp[0]) << endl;
+	std::cout << "char: ";
+	isprint(exp[0]) ? std::cout << '\'' << exp[0] << '\'' : std::cout << "Non displayable";
+	std::cout << std::endl;
+	std::cout << "iValue: " << static_cast<int>(exp[0]) << std::endl;
+	std::cout << "float: " << std::setprecision(1) << static_cast<float>(exp[0]) << 'f' << std::endl;
+	std::cout << "double: " << std::setprecision(1) << static_cast<double>(exp[0]) << std::endl;
 }
 
-void	ScalarConverter::int_converter(string &exp)
+void	ScalarConverter::int_converter(std::string &exp)
 {
 	long	test = atol(exp.c_str());
 	if (test > INT_MAX || test < INT_MIN)
 		return (error(exp, "int"));
 	iValue = atoi(exp.c_str());
-	cout << "char: ";
+	std::cout << "char: ";
 	(iValue < CHAR_MAX && iValue >= 0) ?
-		isprint(iValue) ? cout << '\'' << static_cast<char>(iValue) << '\'' : cout << "Non displayable" : cout << "Impossible";
-	cout << endl;
-	cout << "int: " << iValue << endl;
-	cout << "float: " << setprecision(1) << static_cast<float>(iValue) << 'f' << endl;
-	cout << "double: " << setprecision(1) << static_cast<double>(iValue) << endl;
+		isprint(iValue) ? std::cout << '\'' << static_cast<char>(iValue) << '\'' : std::cout << "Non displayable" : std::cout << "Impossible";
+	std::cout << std::endl;
+	std::cout << "int: " << iValue << std::endl;
+	std::cout << "float: " << std::setprecision(1) << static_cast<float>(iValue) << 'f' << std::endl;
+	std::cout << "double: " << std::setprecision(1) << static_cast<double>(iValue) << std::endl;
 }
 
-void	ScalarConverter::float_converter(string &exp)
+void	ScalarConverter::float_converter(std::string &exp)
 {
 	fValue = strtof(exp.c_str(), 0);
 	if (errno == ERANGE)
 		return (error(exp, "float"));
-	cout << "char: ";
+	std::cout << "char: ";
 	(fValue < CHAR_MAX && fValue >= 0) ?
-		isprint(floor(fValue)) ? cout << '\'' << static_cast<char>(fValue) << '\'' : cout << "Non displayable" : cout << "Impossible";
-	cout << endl;
+		isprint(floor(fValue)) ? std::cout << '\'' << static_cast<char>(fValue) << '\'' : std::cout << "Non displayable" : std::cout << "Impossible";
+	std::cout << std::endl;
 
-	cout << "int: ";
-	(fValue < INT_MAX && fValue > INT_MIN) ? cout << static_cast<int>(fValue) : cout << "Impossible";
-	cout << endl;
+	std::cout << "int: ";
+	(fValue < INT_MAX && fValue > INT_MIN) ? std::cout << static_cast<int>(fValue) : std::cout << "Impossible";
+	std::cout << std::endl;
 
-	cout << "float: " << setprecision(1) << fValue << 'f' << endl;
+	std::cout << "float: " << std::setprecision(1) << fValue << 'f' << std::endl;
 
-	cout << "double: " <<  setprecision(1) << static_cast<double>(fValue) << endl;
+	std::cout << "double: " <<  std::setprecision(1) << static_cast<double>(fValue) << std::endl;
 
 }
 
 
-void	ScalarConverter::double_converter(string &exp)
+void	ScalarConverter::double_converter(std::string &exp)
 {
 	
 	dValue = strtod(exp.c_str(), 0);
 	if (errno == ERANGE)
 		return (error(exp, "double"));
 
-	cout << "char: ";
+	std::cout << "char: ";
 	(dValue < CHAR_MAX && dValue >= 0) ?
-		isprint(floor(dValue)) ? cout << '\'' << static_cast<char>(dValue) << '\'' : cout << "Non displayable" : cout << "Impossible";
-	cout << endl;
+		isprint(floor(dValue)) ? std::cout << '\'' << static_cast<char>(dValue) << '\'' : std::cout << "Non displayable" : std::cout << "Impossible";
+	std::cout << std::endl;
 
-	cout << "int: ";
-	(dValue < INT_MAX && dValue > INT_MIN) ? cout << static_cast<int>(dValue) : cout << "Impossible";
-	cout << endl;
+	std::cout << "int: ";
+	(dValue < INT_MAX && dValue > INT_MIN) ? std::cout << static_cast<int>(dValue) : std::cout << "Impossible";
+	std::cout << std::endl;
 
-	cout << "float: ";
+	std::cout << "float: ";
 	strtof(exp.c_str(), 0);
-	errno != ERANGE ? cout << setprecision(1) << static_cast<float>(dValue) << 'f': cout << "Impossible";
-	cout << endl;
+	errno != ERANGE ? std::cout << std::setprecision(1) << static_cast<float>(dValue) << 'f': std::cout << "Impossible";
+	std::cout << std::endl;
 
-	cout << "double: " << setprecision(1) << (dValue) << endl;
+	std::cout << "double: " << std::setprecision(1) << (dValue) << std::endl;
 }
-void	ScalarConverter::convert_to_n(string &exp, int type_i)
+void	ScalarConverter::convert_to_n(std::string &exp, int type_i)
 {
 	switch (type_i)
 	{
@@ -117,14 +117,13 @@ void	ScalarConverter::convert_to_n(string &exp, int type_i)
 		double_converter(exp);
 		break;
 	default:
-		cout << LightRed << " Error: " << NC << "expression \'" << exp << "\' unrecognized" << endl;
+		std::cout << LightRed << " Error: " << NC << "expression \'" << exp << "\' unrecognized" << std::endl;
 		break;
 	}
 }
 
-string	ScalarConverter::get_type(string &exp)
+std::string	ScalarConverter::get_type(std::string &exp)
 {
-	//int neg = exp[0] == '-' ? 1 : 0;
 	if (exp[0] == 0 || ((exp[0] > 0 && ((exp[0] < '0') || (exp[0] > '9')))
 			&& !exp[1]))
 		return ("char");
@@ -134,10 +133,10 @@ string	ScalarConverter::get_type(string &exp)
 		return ("double");
 	if (!valid_num_str(exp))
 		return ("undefined");
-	else if (exp.find_first_of(".e") == string::npos)
+	else if (exp.find_first_of(".e") == std::string::npos)
 		return ("int");
-	else if (exp.find_first_of("f") == string::npos)
-		if (exp.find('.') != string::npos && exp.find_last_of("0123456789") < exp.find('.'))
+	else if (exp.find_first_of("f") == std::string::npos)
+		if (exp.find('.') != std::string::npos && exp.find_last_of("0123456789") < exp.find('.'))
 			return ("undefined");
 		else
 			return ("double");
@@ -145,13 +144,13 @@ string	ScalarConverter::get_type(string &exp)
 		return ("float");
 }
 
-void	ScalarConverter::converter(string &exp)
+void	ScalarConverter::converter(std::string &exp)
 {
-	static string	types[4] = {"char", "int", "float", "double"};
+	static std::string	types[4] = {"char", "int", "float", "double"};
 	int				type_i = -1;
-	cout << fixed;
+	std::cout << std::fixed;
 	format_str(exp);
-	string	type = get_type(exp);
+	std::string	type = get_type(exp);
 	for (int i = 0; i < 4; i++) 
 		if (!type.compare(types[i]))
 			type_i = i;

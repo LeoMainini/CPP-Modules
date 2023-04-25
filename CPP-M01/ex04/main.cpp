@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 
 std::string get_file_text(std::string filename)
 {
@@ -8,7 +9,7 @@ std::string get_file_text(std::string filename)
 	std::string		text;
 	std::string		line;
 
-	file.open(filename);
+	file.open(filename.c_str());
 	if (!file.is_open()) {
 		std::cout << "File not found" << std::endl;
 		exit (1);
