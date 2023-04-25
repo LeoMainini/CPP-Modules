@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:34:17 by leferrei          #+#    #+#             */
-/*   Updated: 2023/02/17 20:04:12 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:49:40 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ class	Fixed
 		Fixed	operator++ ( int );
 		Fixed	&operator-- ( void );
 		Fixed	operator-- ( int );
-		friend std::ostream &operator << (std::ostream &out, const Fixed &n);
 		//Logic functions
 		int	getRawBits( void ) const;
 		void	setRawBits( int const raw);
@@ -56,5 +55,7 @@ class	Fixed
 		const static Fixed	&max(const Fixed &a, const Fixed &b);
 
 };
+
+	std::ostream &operator << (std::ostream &out, const Fixed &n);
 
 #endif
