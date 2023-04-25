@@ -7,3 +7,5 @@ using namespace std;
 B::B(): Base(){
 	cout << Brown << "Constructed new B instance" << NC << endl;
 }
+
+B::~B(){}
