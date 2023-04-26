@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:21:46 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/25 19:45:21 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:29:13 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ScalarConverter::char_converter(std::string &exp)
 void	ScalarConverter::int_converter(std::string &exp)
 {
 	long	test = atol(exp.c_str());
-	if (test > INT_MAX || test < INT_MIN)
+	if (test > INT_MAX || test < INT_MIN || exp.length() > 11)
 		return (error(exp, "int"));
 	iValue = atoi(exp.c_str());
 	std::cout << "char: ";
@@ -67,7 +67,7 @@ void	ScalarConverter::float_converter(std::string &exp)
 	std::cout << std::endl;
 
 	std::cout << "int: ";
-	(fValue < INT_MAX && fValue > INT_MIN) ? std::cout << static_cast<int>(fValue) : std::cout << "Impossible";
+	(floor(fValue) < INT_MAX && floor(fValue) > INT_MIN) ? std::cout << static_cast<int>(fValue) : std::cout << "Impossible";
 	std::cout << std::endl;
 
 	std::cout << "float: " << std::setprecision(1) << fValue << 'f' << std::endl;
