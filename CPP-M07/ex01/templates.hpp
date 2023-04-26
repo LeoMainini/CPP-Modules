@@ -17,4 +17,8 @@ template <typename T> void swap(T &a, T &b){
 	b = temp;
 }
 
+template <typename T> void printa(T &a){
+	std::cout << a << std::endl;
+}
+
 #endif
