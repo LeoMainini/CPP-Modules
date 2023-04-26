@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:21:46 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/26 18:29:13 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:33:40 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	ScalarConverter::char_converter(std::string &exp)
 
 void	ScalarConverter::int_converter(std::string &exp)
 {
+	if (exp.length() > 11)
+		return (error(exp, "int"));
 	long	test = atol(exp.c_str());
-	if (test > INT_MAX || test < INT_MIN || exp.length() > 11)
+	if (test > INT_MAX || test < INT_MIN)
 		return (error(exp, "int"));
 	iValue = atoi(exp.c_str());
 	std::cout << "char: ";
