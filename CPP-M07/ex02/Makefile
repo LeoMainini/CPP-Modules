@@ -33,7 +33,7 @@ IPurple		= \033[0;95m
 ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
-SRCS	= 	 Array.cpp main.cpp
+SRCS	= 	main.cpp
 OBJS	= $(SRCS:.cpp=.o)
 
 CC		= c++
@@ -44,7 +44,7 @@ CSTD	= -std=c++98
 
 DEBUG	= 1
 
-DFLAGS = -ggdb -fsanitize=address -Wshadow
+DFLAGS = -ggdb -fsanitize=address -Wshadow -g -pedantic
 
 INC = -I .
 

@@ -6,12 +6,12 @@ template <class T>
 class Array
 {
 private:
-	T	*_items;
-	int	_size;
+	T				*_items;
+	unsigned int	_size;
 public:
 	//(Con/Des)tructors
-	Array();
-	Array(int n);
+	// Array();
+	Array(unsigned int n = 0);
 	Array(const Array &copy);
 	Array &operator = (const Array &assign);
 	~Array();
@@ -22,5 +22,7 @@ public:
 	const T &operator[](unsigned int i) const;
 
 };
+
+#include "Array.tpp"
 
 #endif
