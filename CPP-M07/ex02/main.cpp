@@ -2,8 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
-#define MAX_VAL 750
-#define PRINT   0
+#define MAX_VAL 24
+#define PRINT   1
 
 int main(int, char**)
 {
@@ -75,6 +75,9 @@ int main(int, char**)
 				std::cout << " | ";
 		}
 	}
+	mirror[MAX_VAL - 1] = 5;
+	if (numbers[MAX_VAL - 1] == mirror [MAX_VAL - 1])
+		std::cout << "!!! Changing mirror changes numbers !!! " << std::endl; 
     delete [] mirror;//
     return 0;
 }
