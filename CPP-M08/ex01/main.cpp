@@ -9,6 +9,7 @@ int main(void)
 	std::vector<int> vec(nums, nums + sizeof(nums) / sizeof(int));
 	srand(time(NULL));
 
+	std::cout << "at start a = " << a << std::endl;
 	a.addNumber(5);
 	a.addNumber(6);
 	a.addNumber(7);

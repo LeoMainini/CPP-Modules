@@ -26,8 +26,14 @@ int Span::back(){
 	return (_numbers.back());
 }
 
+bool Span::empty(){
+	return (_numbers.empty());
+}
+
 std::ostream &operator<<(std::ostream &o, Span &span)
 {
+	if (span.empty())
+		return (o);
 	o << "{";
 	for (std::vector<int>::iterator s = span.begin(); s + 1 < span.end(); s++)
 		o << " " << *s <<",";

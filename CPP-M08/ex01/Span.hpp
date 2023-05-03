@@ -24,6 +24,7 @@ public:
 	std::vector<int>::iterator begin();
 	std::vector<int>::iterator end();
 	int back();
+	bool empty();
 	unsigned int	get_max_size();
 	unsigned int	get_size();
 	template <typename numContainer>
