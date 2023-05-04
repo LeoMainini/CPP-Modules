@@ -8,8 +8,11 @@ class Span
 {
 private:
 	unsigned int	_size;
-	Span();
 	std::vector<int> _numbers;
+	std::vector<int> _spans;
+	Span();
+	void calculateSpans();
+	// void abs(int &num);
 
 public:
 	//Constructors

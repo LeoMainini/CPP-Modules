@@ -1,9 +1,9 @@
 #include "Span.hpp"
 #include <algorithm>
+#include <numeric>
+#include <cstdlib>
 
 Span::Span(unsigned int size): _size(size) { }
-
-
 
 void	Span::addNumber(int number){
 	if (_numbers.size() >= _size)
@@ -47,6 +47,28 @@ unsigned int	Span::get_max_size(){
 
 unsigned int	Span::get_size(){
 	return (_numbers.size());
+}
+
+void rAbs(int &num){
+	num = abs(num);
+}
+
+void	Span::calculateSpans(){
+	if (_numbers.size() < 2)
+		throw (std::length_error("No spans could be found"));
+	_spans.resize(_numbers.size());
+	std::adjacent_difference(_numbers.begin(), _numbers.end(), _spans.begin());
+	std::for_each(_spans.begin(), _spans.end(), rAbs);
+}
+
+int		Span::shortestSpan(){
+	calculateSpans();
+	return (*std::min_element(_spans.begin() + 1, _spans.end()));
+}
+
+int		Span::longestSpan(){
+	calculateSpans();
+	return (*std::max_element(_spans.begin() + 1, _spans.end()));
 }
 
 Span::~Span() {}
