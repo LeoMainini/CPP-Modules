@@ -12,7 +12,6 @@ private:
 	std::vector<int> _spans;
 	Span();
 	void calculateSpans();
-	// void abs(int &num);
 
 public:
 	//Constructors
@@ -20,16 +19,19 @@ public:
 	Span(const Span &copy);
 	Span	&operator= (const Span &assign);
 	~Span();
-	//Functions
-	void	addNumber(int number);
-	int		shortestSpan();
-	int		longestSpan();
-	std::vector<int>::iterator begin();
-	std::vector<int>::iterator end();
+	//Getters and Setters
 	int back();
 	bool empty();
-	unsigned int	get_max_size();
 	unsigned int	get_size();
+	void	addNumber(int number);
+	unsigned int	get_max_size();
+	void	addNumbers(int number[]);
+	std::vector<int>::iterator end();
+	std::vector<int>::iterator begin();
+	//Span Functions
+	int		shortestSpan();
+	int		longestSpan();
+	//Setter templates
 	template <typename numContainer>
 	void	addNumbers(const numContainer &numbers)
 	{
@@ -39,9 +41,8 @@ public:
 		_numbers.resize(_numbers.size() + numbers.size());
 		std::copy(numbers.begin(), numbers.end(), _numbers.begin() + oldSize);
 	}
-	void	addNumbers(int number[]);
 };
-
+//Stream overloads
 std::ostream &operator<<(std::ostream &o, Span &span);
 
 #endif
