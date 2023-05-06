@@ -1,8 +1,6 @@
 #ifndef MUTANT_STACK_H
 #define MUTANT_STACH_H
 #include <stack>
-#include <list>
-#include <iostream>
 #include <deque>
 
 template <class T, class C=std::deque<T> >

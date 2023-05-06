@@ -49,7 +49,7 @@ DFLAGS = -ggdb -fsanitize=address -Wshadow
 
 INC = -I .
 
-NAME	= tempy
+NAME	= filaninjamutanteadolescente
 
 all:	$(NAME)
 

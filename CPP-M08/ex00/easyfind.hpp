@@ -3,12 +3,10 @@
 #include <iterator>
 
 template <typename T>
-int easyfind(const T &c, int entry){
-	if (std::find(c.begin(), c.end(), entry) == c.end())
+typename T::iterator easyfind(T &c, int entry){
+	typename T::iterator entryIt = std::find(c.begin(), c.end(), entry);
+	if (entryIt == c.end())
 		throw (std::out_of_range("number not in container"));
-	return (*std::find(c.begin(), c.end(), entry));
-	// if (a != c.end())
-	// 	return (a);
-	// return (c.end());
-	// return (c.find(entry));
+	return (entryIt);
+
 }
