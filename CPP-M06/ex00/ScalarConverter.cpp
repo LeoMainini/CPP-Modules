@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:21:46 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/26 18:33:40 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/05/07 04:16:04 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,3 +158,11 @@ void	ScalarConverter::converter(std::string &exp)
 			type_i = i;
 	convert_to_n(exp, type_i);	
 }
+
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::~ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &scc){}
+
+ScalarConverter &ScalarConverter::operator = (const ScalarConverter &cca) { return (*this);}
