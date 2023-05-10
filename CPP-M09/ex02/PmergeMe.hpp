@@ -13,6 +13,8 @@ class PmergeMe {
 		int		pError(std::string msg, int code);
 	public:
 		int	init(char **numberList);
+		int	reinit(char **numberList);
+		bool isInitialized();
 		PmergeMe();
 		PmergeMe(char **numberList);
 		PmergeMe(const PmergeMe &cp);

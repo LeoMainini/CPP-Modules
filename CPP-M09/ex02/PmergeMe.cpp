@@ -27,7 +27,7 @@ PmergeMe &PmergeMe::operator= (const PmergeMe &as)
 		std::copy(as._numVector.begin(), as._numVector.end(), _numVector.begin());
 		_isInit = as._isInit;
 	}
-	else if (&as != this)
+	else if (&as != this && _isInit)
 	{
 		_numList.erase(_numList.begin(), _numList.end());
 		_numVector.erase(_numVector.begin(), _numVector.end());
@@ -44,7 +44,7 @@ int	PmergeMe::init(char **numberList)
 {
 	long n;
 
-	for (int i = 0; numberList[i]; i++)
+	for (int i = 0; numberList[i] && !_isInit; i++)
 	{
 		if (!checkPosNumbericString(numberList[i]))
 			return (0);
@@ -58,6 +58,17 @@ int	PmergeMe::init(char **numberList)
 	}
 	return (1);
 }
+
+int	PmergeMe::reinit(char **numberList)
+{
+	if (!_isInit)
+		return (pError("class not initialized, please use init() before using", 0));
+	PmergeMe tmp;
+	*this = tmp;
+	return ((_isInit = init(numberList)));
+}
+
+bool PmergeMe::isInitialized() { return (_isInit); }
 
 int	PmergeMe::checkPosNumbericString(std::string num)
 {
