@@ -90,7 +90,7 @@ void PmergeMe::divideContainer(std::vector<int> &a, std::vector<int> &b)
 void PmergeMe::insertSort(std::vector<int> &a)
 {
 	for (std::vector<int>::iterator it = a.begin() + 1; it != a.end(); it++)
-		for (std::vector<int>::iterator itk = it - 1; itk >= a.begin() && *itk > *it; --itk)
+		for (std::vector<int>::iterator itk = it - 1; itk >= a.begin() && *itk > *(itk + 1); --itk)
 			std::iter_swap(itk, itk + 1);
 }
 
@@ -103,7 +103,14 @@ void PmergeMe::sortVector()
 	divideContainer(_numVector, tmpVector);
 	insertSort(_numVector);
 	insertSort(tmpVector);
+	// for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+	// for (std::vector<int>::iterator it = tmpVector.begin(); it != tmpVector.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
 	std::merge(_numVector.begin(), _numVector.end(), tmpVector.begin(), tmpVector.end(), std::back_inserter(result));
+	_numVector.erase(_numVector.begin(), _numVector.end());
 	std::copy(result.begin(), result.end(), std::back_inserter(_numVector));
 	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
 		std::cout << *it << " ";
@@ -112,18 +119,19 @@ void PmergeMe::sortVector()
 
 void PmergeMe::insertSort(std::list<int> &a)
 {
-	// a.sort();
 	std::list<int>::iterator it = a.begin();
 	std::list<int>::iterator itk;
-
-	for (++it; it != a.end(); it++)
+	
+	++it;
+	for (; it != a.end(); it++)
 	{
 		itk = --it;
-		it++;
-		for (; itk != a.begin() && *itk > *it; itk--)
-				std::iter_swap(itk, it);
-		if (*itk > *it)
-			std::iter_swap(itk, --it);
+		++it;
+		for (; itk != a.begin() && *(++itk) < *(--itk); --itk)
+			std::iter_swap(++itk, --itk);
+		itk++;
+		if (itk != a.begin() && itk != a.end() && *itk < *a.begin())
+			std::iter_swap(itk, a.begin());
 	}
 }
 
@@ -133,10 +141,7 @@ void PmergeMe::divideContainer(std::list<int> &a, std::list<int> &b)
 	std::list<int>::iterator it = a.begin();
 
 	offset = !(a.size() % 2) ? a.size() / 2 : a.size() / 2 + 1;
-	for (; it != a.end() && offset--; it++)
-	{
-		std::cout << "a\n";
-	}
+	for (; it != a.end() && offset--; it++) { }
 	std::copy(it, a.end(), std::back_inserter(b));
 	a.erase(it, a.end());
 }
@@ -147,22 +152,25 @@ void PmergeMe::sortList()
 	std::list<int> result;
 
 	divideContainer(_numList, tmpList);
-	insertSort(_numList);
+	// for (std::list<int>::iterator it = tmpList.begin(); it != tmpList.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
 	insertSort(tmpList);
-	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+	// for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+	insertSort(_numList);
 	// std::merge(_numList.begin(), _numList.end(), tmpList.begin(), tmpList.end(), std::back_inserter(result));
 	// std::copy(result.begin(), result.end(), std::back_inserter(_numList));
 	// for (std::list<int>::iterator it = result.begin(); it != result.end(); it++)
 	// 	std::cout << *it << " ";
 	// std::cout << std::endl;
-	for (std::list<int>::iterator it = tmpList.begin(); it != tmpList.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+	// for (std::list<int>::iterator it = tmpList.begin(); it != tmpList.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+	// for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
 	_numList.merge(tmpList);
 	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
 		std::cout << *it << " ";
