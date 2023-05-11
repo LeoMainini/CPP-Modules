@@ -8,7 +8,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	PmergeMe sorter(++argv);
-	sorter.sortVector();
-	sorter.sortList();
+	sorter.runTest();
+	// sorter.sortVector();
+	// sorter.sortList();
 	return (0);
 }

@@ -2,6 +2,8 @@
 #include <climits>
 #include <cstdlib>
 #include <algorithm>
+#include <ctime>
+#include <iomanip>
 
 // Must init after calling constructor
 PmergeMe::PmergeMe() : _isInit(false) {}
@@ -67,6 +69,25 @@ int PmergeMe::reinit(char **numberList)
 	return ((_isInit = init(numberList)));
 }
 
+void	PmergeMe::runTest()
+{
+	std::clock_t start = clock();
+	int		secSubdivisions = 1;
+	long	clocks_per_mcs = CLOCKS_PER_SEC * (1.0 / secSubdivisions);
+
+	std::cout << "clocks  = " << start << std::endl;
+	if (!isInitialized())
+		return ((void)pError("class not initialized, please use init() before using", 0));
+	std::cout << std::fixed;
+
+	sortVector();
+	std::cout <<"Time to complete = " << (double)(clock() - start ) / clocks_per_mcs << std::endl;
+	start = clock();
+	sortList();
+	std::cout <<"Time to complete = " << (double)(clock() - start ) / clocks_per_mcs << std::endl;
+	
+}
+
 bool PmergeMe::isInitialized() { return (_isInit); }
 
 int PmergeMe::checkPosNumbericString(std::string num)
@@ -81,9 +102,10 @@ int PmergeMe::checkPosNumbericString(std::string num)
 void PmergeMe::divideContainer(std::vector<int> &a, std::vector<int> &b)
 {
 	size_t offset;
+	size_t size = a.size();
 
-	offset = !(a.size() % 2) ? a.size() / 2 : a.size() / 2 + 1;
-	std::copy(a.begin() + offset, a.end(), b.begin());
+	offset = !(size % 2) ? size / 2 : size / 2 + 1;
+	std::copy(a.begin() + offset, a.end(), std::back_inserter(b));
 	a.erase(a.begin() + offset, a.end());
 }
 
@@ -99,29 +121,24 @@ void PmergeMe::sortVector()
 	std::vector<int> tmpVector;
 	std::vector<int> result;
 
-	tmpVector.resize(_numVector.size() / 2);
+	if (_numVector.size() == 1)
+		return ;
 	divideContainer(_numVector, tmpVector);
 	insertSort(_numVector);
 	insertSort(tmpVector);
-	// for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
-	// for (std::vector<int>::iterator it = tmpVector.begin(); it != tmpVector.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
 	std::merge(_numVector.begin(), _numVector.end(), tmpVector.begin(), tmpVector.end(), std::back_inserter(result));
 	_numVector.erase(_numVector.begin(), _numVector.end());
 	std::copy(result.begin(), result.end(), std::back_inserter(_numVector));
-	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+	// for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
 }
 
 void PmergeMe::insertSort(std::list<int> &a)
 {
 	std::list<int>::iterator it = a.begin();
 	std::list<int>::iterator itk;
-	
+
 	++it;
 	for (; it != a.end(); it++)
 	{
@@ -139,8 +156,9 @@ void PmergeMe::divideContainer(std::list<int> &a, std::list<int> &b)
 {
 	size_t offset;
 	std::list<int>::iterator it = a.begin();
-
-	offset = !(a.size() % 2) ? a.size() / 2 : a.size() / 2 + 1;
+	size_t size = a.size();
+	
+	offset = !(size % 2) ? size / 2 : size / 2 + 1;
 	for (; it != a.end() && offset--; it++) { }
 	std::copy(it, a.end(), std::back_inserter(b));
 	a.erase(it, a.end());
@@ -151,30 +169,15 @@ void PmergeMe::sortList()
 	std::list<int> tmpList;
 	std::list<int> result;
 
+	if (_numList.size() == 1)
+		return ;
 	divideContainer(_numList, tmpList);
-	// for (std::list<int>::iterator it = tmpList.begin(); it != tmpList.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
 	insertSort(tmpList);
-	// for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
 	insertSort(_numList);
-	// std::merge(_numList.begin(), _numList.end(), tmpList.begin(), tmpList.end(), std::back_inserter(result));
-	// std::copy(result.begin(), result.end(), std::back_inserter(_numList));
-	// for (std::list<int>::iterator it = result.begin(); it != result.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
-	// for (std::list<int>::iterator it = tmpList.begin(); it != tmpList.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
+	_numList.merge(tmpList);
 	// for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
 	// 	std::cout << *it << " ";
 	// std::cout << std::endl;
-	_numList.merge(tmpList);
-	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
 }
 
 int PmergeMe::pError(std::string msg, int code)

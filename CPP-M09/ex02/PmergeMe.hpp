@@ -15,16 +15,17 @@ class PmergeMe {
 		void	insertSort(std::list<int> &a);
 		void	divideContainer(std::vector<int> &a, std::vector<int> &b);
 		void	divideContainer(std::list<int> &a, std::list<int> &b);
+		void	sortVector();
+		void	sortList();
 	public:
-		int	init(char **numberList);
-		int	reinit(char **numberList);
-		bool isInitialized();
+		int		init(char **numberList);
+		int		reinit(char **numberList);
+		bool	isInitialized();
+		void	runTest();
 		PmergeMe();
 		PmergeMe(char **numberList);
 		PmergeMe(const PmergeMe &cp);
 		PmergeMe &operator= (const PmergeMe &as);
-		void	sortVector();
-		void	sortList();
 		~PmergeMe();
 
 };
