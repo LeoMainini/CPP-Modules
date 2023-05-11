@@ -8,6 +8,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	PmergeMe sorter(++argv);
-	std::cout << sorter.isInitialized() << std::endl;
+	sorter.sortVector();
+	sorter.sortList();
 	return (0);
 }

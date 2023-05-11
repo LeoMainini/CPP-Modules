@@ -1,14 +1,15 @@
 #include "PmergeMe.hpp"
 #include <climits>
 #include <cstdlib>
+#include <algorithm>
 
-//Must init after calling constructor
-PmergeMe::PmergeMe(): _isInit(false) { }
+// Must init after calling constructor
+PmergeMe::PmergeMe() : _isInit(false) {}
 
-PmergeMe::PmergeMe(char **numberList): _isInit(false) 
+PmergeMe::PmergeMe(char **numberList) : _isInit(false)
 {
 	if (!numberList && pError("Invalid string array pointer passed to constructor", 0))
-		return ;
+		return;
 	_isInit = init(numberList);
 }
 
@@ -17,7 +18,7 @@ PmergeMe::PmergeMe(const PmergeMe &cp)
 	*this = cp;
 }
 
-PmergeMe &PmergeMe::operator= (const PmergeMe &as)
+PmergeMe &PmergeMe::operator=(const PmergeMe &as)
 {
 	if (&as != this && as._isInit)
 	{
@@ -38,9 +39,9 @@ PmergeMe &PmergeMe::operator= (const PmergeMe &as)
 	return (*this);
 }
 
-PmergeMe::~PmergeMe(){ }
+PmergeMe::~PmergeMe() {}
 
-int	PmergeMe::init(char **numberList)
+int PmergeMe::init(char **numberList)
 {
 	long n;
 
@@ -51,15 +52,13 @@ int	PmergeMe::init(char **numberList)
 		n = atol(numberList[i]);
 		if (n > INT_MAX)
 			return (pError("number '" + std::string(numberList[i]) + "'out of range", 0));
-		_numList.resize(_numList.size() + 1);
-		_numVector.resize(_numList.size() + 1);
 		_numList.push_back(atoi(numberList[i]));
 		_numVector.push_back(atoi(numberList[i]));
 	}
 	return (1);
 }
 
-int	PmergeMe::reinit(char **numberList)
+int PmergeMe::reinit(char **numberList)
 {
 	if (!_isInit)
 		return (pError("class not initialized, please use init() before using", 0));
@@ -70,7 +69,7 @@ int	PmergeMe::reinit(char **numberList)
 
 bool PmergeMe::isInitialized() { return (_isInit); }
 
-int	PmergeMe::checkPosNumbericString(std::string num)
+int PmergeMe::checkPosNumbericString(std::string num)
 {
 	if (num.find_first_not_of("-0123456789") != std::string::npos)
 		return (pError("number '" + num + "' not recognized", 0));
@@ -79,7 +78,98 @@ int	PmergeMe::checkPosNumbericString(std::string num)
 	return (1);
 }
 
-int	PmergeMe::pError(std::string msg, int code)
+void PmergeMe::divideContainer(std::vector<int> &a, std::vector<int> &b)
+{
+	size_t offset;
+
+	offset = !(a.size() % 2) ? a.size() / 2 : a.size() / 2 + 1;
+	std::copy(a.begin() + offset, a.end(), b.begin());
+	a.erase(a.begin() + offset, a.end());
+}
+
+void PmergeMe::insertSort(std::vector<int> &a)
+{
+	for (std::vector<int>::iterator it = a.begin() + 1; it != a.end(); it++)
+		for (std::vector<int>::iterator itk = it - 1; itk >= a.begin() && *itk > *it; --itk)
+			std::iter_swap(itk, itk + 1);
+}
+
+void PmergeMe::sortVector()
+{
+	std::vector<int> tmpVector;
+	std::vector<int> result;
+
+	tmpVector.resize(_numVector.size() / 2);
+	divideContainer(_numVector, tmpVector);
+	insertSort(_numVector);
+	insertSort(tmpVector);
+	std::merge(_numVector.begin(), _numVector.end(), tmpVector.begin(), tmpVector.end(), std::back_inserter(result));
+	std::copy(result.begin(), result.end(), std::back_inserter(_numVector));
+	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
+void PmergeMe::insertSort(std::list<int> &a)
+{
+	// a.sort();
+	std::list<int>::iterator it = a.begin();
+	std::list<int>::iterator itk;
+
+	for (++it; it != a.end(); it++)
+	{
+		itk = --it;
+		it++;
+		for (; itk != a.begin() && *itk > *it; itk--)
+				std::iter_swap(itk, it);
+		if (*itk > *it)
+			std::iter_swap(itk, --it);
+	}
+}
+
+void PmergeMe::divideContainer(std::list<int> &a, std::list<int> &b)
+{
+	size_t offset;
+	std::list<int>::iterator it = a.begin();
+
+	offset = !(a.size() % 2) ? a.size() / 2 : a.size() / 2 + 1;
+	for (; it != a.end() && offset--; it++)
+	{
+		std::cout << "a\n";
+	}
+	std::copy(it, a.end(), std::back_inserter(b));
+	a.erase(it, a.end());
+}
+
+void PmergeMe::sortList()
+{
+	std::list<int> tmpList;
+	std::list<int> result;
+
+	divideContainer(_numList, tmpList);
+	insertSort(_numList);
+	insertSort(tmpList);
+	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	// std::merge(_numList.begin(), _numList.end(), tmpList.begin(), tmpList.end(), std::back_inserter(result));
+	// std::copy(result.begin(), result.end(), std::back_inserter(_numList));
+	// for (std::list<int>::iterator it = result.begin(); it != result.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+	for (std::list<int>::iterator it = tmpList.begin(); it != tmpList.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	_numList.merge(tmpList);
+	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
+int PmergeMe::pError(std::string msg, int code)
 {
 	std::cout << "Error: " << msg << std::endl;
 	return (code);
