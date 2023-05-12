@@ -22,15 +22,15 @@ void	Phonebook::add( void )
 
 	std::cout << "Input contact details" << std::endl << " First name:\t";
 	getline(std::cin, strs[0]);
-	std::cout << " Last name:\t";
+	if (!std::cin.eof()) std::cout << " Last name:\t";
 	getline(std::cin, strs[1]);
-	std::cout << " Nick name:\t";
+	if (!std::cin.eof()) std::cout << " Nick name:\t";
 	getline(std::cin, strs[2]);
-	std::cout << " Phone number:\t";
+	if (!std::cin.eof()) std::cout << " Phone number:\t";
 	getline(std::cin, strs[3]);
-	std::cout << " Secret:\t";
+	if (!std::cin.eof()) std::cout << " Secret:\t";
 	getline(std::cin, strs[4]);
-	if (contacts[i % 8].set_data(strs[0], strs[1], strs[2], strs[3], strs[4]))
+	if (!std::cin.eof() && contacts[i % 8].set_data(strs[0], strs[1], strs[2], strs[3], strs[4]))
 		i++;
 }
 
@@ -53,8 +53,9 @@ int	Phonebook::_print_all_contacts() const
 			this->contacts[i].n_name : this->contacts[i].n_name.substr(0, 9).append(".");
 		for (int j = 0; j < 3; j++)
 			std::cout << std::right << std::setw(10) << strs[j] << "|";
-		std::cout << std::endl << std::endl;
+		std::cout << std::endl;
 	}
+	std::cout << std::endl;
 	return (i);
 }
 
@@ -75,6 +76,8 @@ void	Phonebook::_select_contact(int i) const
 		return ;
 	std::cout << "Choose contact to display: ";
 	getline(std::cin, chosen_contact);
+	if (std::cin.eof())
+		return ;
 	if (!chosen_contact.compare("EXIT"))
 		return ;
 	if (is_valid_choice(chosen_contact, i))
