@@ -24,10 +24,8 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &as)
 {
 	if (&as != this && as._isInit)
 	{
-		_numList.resize(as._numList.size());
-		_numVector.resize(as._numVector.size());
-		std::copy(as._numList.begin(), as._numList.end(), _numList.begin());
-		std::copy(as._numVector.begin(), as._numVector.end(), _numVector.begin());
+		_numVector = as._numVector;
+		_numList = as._numList;
 		_isInit = as._isInit;
 	}
 	else if (&as != this && _isInit)
@@ -71,20 +69,27 @@ int PmergeMe::reinit(char **numberList)
 
 void	PmergeMe::runTest()
 {
-	std::clock_t start = clock();
-	int		secSubdivisions = 1;
-	long	clocks_per_mcs = CLOCKS_PER_SEC * (1.0 / secSubdivisions);
+	std::clock_t start;
+	int		secSubdivisions = 1000;
+	long	clocksPerSubdivision = CLOCKS_PER_SEC * (1.0 / secSubdivisions);
+	double	timeSpent;
 
-	std::cout << "clocks  = " << start << std::endl;
+
 	if (!isInitialized())
-		return ((void)pError("class not initialized, please use init() before using", 0));
+		return ;
 	std::cout << std::fixed;
-
+	std::cout << "Before:	";
+	printContainer(_numVector);
+	std::cout << "After:	";
+	start = clock();
 	sortVector();
-	std::cout <<"Time to complete = " << (double)(clock() - start ) / clocks_per_mcs << std::endl;
+	timeSpent = (double)(clock() - start ) / clocksPerSubdivision;
+	printContainer(_numVector);
+	std::cout << "Time to process a range of " << _numVector.size() << " elements with std::vector:	" << timeSpent << " ms" << std::endl;
 	start = clock();
 	sortList();
-	std::cout <<"Time to complete = " << (double)(clock() - start ) / clocks_per_mcs << std::endl;
+	timeSpent = (double)(clock() - start ) / clocksPerSubdivision;
+	std::cout << "Time to process a range of " << _numList.size() << " elements with std::list:	" << timeSpent << " ms" << std::endl;
 	
 }
 
@@ -121,7 +126,7 @@ void PmergeMe::sortVector()
 	std::vector<int> tmpVector;
 	std::vector<int> result;
 
-	if (_numVector.size() == 1)
+	if (_numVector.size() <= 1)
 		return ;
 	divideContainer(_numVector, tmpVector);
 	insertSort(_numVector);
@@ -129,9 +134,6 @@ void PmergeMe::sortVector()
 	std::merge(_numVector.begin(), _numVector.end(), tmpVector.begin(), tmpVector.end(), std::back_inserter(result));
 	_numVector.erase(_numVector.begin(), _numVector.end());
 	std::copy(result.begin(), result.end(), std::back_inserter(_numVector));
-	// for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
 }
 
 void PmergeMe::insertSort(std::list<int> &a)
@@ -169,15 +171,12 @@ void PmergeMe::sortList()
 	std::list<int> tmpList;
 	std::list<int> result;
 
-	if (_numList.size() == 1)
+	if (_numList.size() <= 1)
 		return ;
 	divideContainer(_numList, tmpList);
 	insertSort(tmpList);
 	insertSort(_numList);
 	_numList.merge(tmpList);
-	// for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
 }
 
 int PmergeMe::pError(std::string msg, int code)

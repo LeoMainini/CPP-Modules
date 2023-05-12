@@ -17,6 +17,22 @@ class PmergeMe {
 		void	divideContainer(std::list<int> &a, std::list<int> &b);
 		void	sortVector();
 		void	sortList();
+		template <class T>
+		void	printContainer(const T &c)
+		{
+			typedef typename T::const_iterator citer;
+			size_t	i = 0;
+			citer it;
+
+			for (it = c.begin() ; it != c.end() && i < 4; it++, i++)
+				std::cout << *it << " ";
+			if (c.size() > 5)
+				std::cout << "[...]";
+			else if (it != c.end())
+				std::cout << *it;
+			std::cout << std::endl;
+
+		}
 	public:
 		int		init(char **numberList);
 		int		reinit(char **numberList);

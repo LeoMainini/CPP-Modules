@@ -68,6 +68,18 @@ void RPN::calculateExpressionResult(std::string &token)
 	_numbers.push(num);
 }
 
+void	RPN::pResult()
+{
+	if (_numbers.size() > 1)
+		pError("multiple results left in stack", 1);
+	while (!_numbers.empty())
+	{
+		std::cout << _numbers.top() << " ";
+		_numbers.pop();
+	}
+	std::cout << std::endl;
+}
+
 void	RPN::calculateExpression(std::string exp)
 {
 	std::istringstream	exps(exp);
@@ -88,5 +100,5 @@ void	RPN::calculateExpression(std::string exp)
 		else
 			return ((void)pError("invalid expression => " + exp, 1));
 	}
-	std::cout << _numbers.top() << std::endl;
+
 }

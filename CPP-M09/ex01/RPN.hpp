@@ -11,6 +11,7 @@ class RPN {
 		static int	checkValidToken(std::string &token);
 		static int	pError(std::string msg, int code);
 		static void	calculateExpressionResult(std::string &token);
+		static void	pResult();
 		RPN();
 		RPN(const RPN &cp);
 		RPN &operator=(const RPN &as);
