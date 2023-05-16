@@ -84,12 +84,12 @@ void	PmergeMe::runTest()
 	start = clock();
 	sortVector();
 	timeSpent = (double)(clock() - start ) / clocksPerSubdivision;
-	printContainer(_numVector);
 	std::cout << "Time to process a range of " << _numVector.size() << " elements with std::vector:	" << timeSpent << " ms" << std::endl;
 	start = clock();
 	sortList();
 	timeSpent = (double)(clock() - start ) / clocksPerSubdivision;
 	std::cout << "Time to process a range of " << _numList.size() << " elements with std::list:	" << timeSpent << " ms" << std::endl;
+	printContainer(_numList);
 	
 }
 
@@ -106,11 +106,10 @@ int PmergeMe::checkPosNumbericString(std::string num)
 
 void PmergeMe::divideVectorPairs()
 {
-
+	std::pair<int, int> tmp;
 	_vecPairs.reserve(_numVector.size() / 2 + 1);
 	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
 	{
-		std::pair<int, int> tmp;
 		if (it + 1 != _numVector.end())
 		{
 			tmp.first = *it > *(it + 1) ? *(it + 1) : *it ;
@@ -180,17 +179,63 @@ void PmergeMe::divideContainer(std::list<int> &a, std::list<int> &b)
 	a.erase(it, a.end());
 }
 
+void	PmergeMe::divideListPairs()
+{
+	std::pair<int, int>			tmp;
+	std::list<int>::iterator	tmpi;
+	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); ++it)
+	{
+		tmpi = it;
+		if (++tmpi != _numList.end())
+		{
+			tmp.first = *(it);
+			if (*it > *(++it))
+			{
+				tmp.second = tmp.first;
+				tmp.first = *it;
+			}
+			else
+				tmp.second = *it;
+		}
+		else
+		{
+			tmp.first = *it;
+			tmp.second = -1;
+		}
+		_vecPairs.push_back(tmp);
+		std::cout << "List pair = { " << tmp.first << ", " << tmp.second << " }" << std::endl;
+	}
+}
+
+void PmergeMe::insertSortVectorPairs()
+{
+	std::list<int>::iterator it = a.begin();
+	std::list<int>::iterator itk;
+
+	++it;
+	for (; it != a.end(); it++)
+	{
+		itk = --it;
+		++it;
+		for (; itk != a.begin() && *(++itk) < *(--itk); --itk)
+			std::iter_swap(++itk, --itk);
+		itk++;
+		if (itk != a.begin() && itk != a.end() && *itk < *a.begin())
+			std::iter_swap(itk, a.begin());
+	}
+}
+
 void PmergeMe::sortList()
 {
-	std::list<int> tmpList;
-	std::list<int> result;
+	// std::list<int> tmpList;
+	// std::list<int> result;
 
 	if (_numList.size() <= 1)
 		return ;
-	divideContainer(_numList, tmpList);
-	insertSort(tmpList);
+	divideListPairs();
+	// insertSort(tmpList);
 	insertSort(_numList);
-	_numList.merge(tmpList);
+	// _numList.merge(tmpList);
 }
 
 int PmergeMe::pError(std::string msg, int code)
