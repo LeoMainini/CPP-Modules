@@ -106,6 +106,8 @@ int PmergeMe::checkPosNumbericString(std::string num)
 
 void PmergeMe::divideVectorPairs()
 {
+
+	_vecPairs.reserve(_numVector.size() / 2 + 1);
 	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
 	{
 		std::pair<int, int> tmp;
