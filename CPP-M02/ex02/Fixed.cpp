@@ -5,28 +5,23 @@
 //Constructors and destructors
 Fixed::Fixed( void )
 {
-	std::cout << "Constructor called\n";
 }
 
 Fixed::Fixed( const float num ) : integral( roundf(num * (1 << this->decimal)))
 {
-	std::cout << "Float constructor called\n";
 }
 
 Fixed::Fixed( const int num )
 {
-	std::cout << "Int constructor called\n";
 	this->integral = num << 8;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called\n";
 }
 
 Fixed::Fixed( const Fixed &n) : integral(n.getRawBits())
 {
-	std::cout << "Copy constructor called\n";
 }
 
 //Value compute functions
@@ -55,7 +50,6 @@ float Fixed::toFloat( void ) const
 //Assignement
 Fixed	&Fixed::operator= (const Fixed &n)
 {
-	std::cout << "Assignment constructor called\n";
 	if (this != &n)
 		this->setRawBits(n.getRawBits());
 	return (*this);

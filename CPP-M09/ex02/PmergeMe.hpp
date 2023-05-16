@@ -7,13 +7,14 @@
 class PmergeMe {
 	private:
 		std::vector<int>	_numVector;
+		std::vector<std::pair<int, int> > _vecPairs;
 		std::list<int>		_numList;
 		bool				_isInit;
 		int		checkPosNumbericString(std::string num);
 		int		pError(std::string msg, int code);
-		void	insertSort(std::vector<int> &a);
+		void	insertSortVectorPairs();
 		void	insertSort(std::list<int> &a);
-		void	divideContainer(std::vector<int> &a, std::vector<int> &b);
+		void	divideVectorPairs();
 		void	divideContainer(std::list<int> &a, std::list<int> &b);
 		void	sortVector();
 		void	sortList();
@@ -33,6 +34,7 @@ class PmergeMe {
 			std::cout << std::endl;
 
 		}
+
 	public:
 		int		init(char **numberList);
 		int		reinit(char **numberList);

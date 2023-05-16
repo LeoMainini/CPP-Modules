@@ -6,11 +6,10 @@
 std::string get_file_text(std::string filename)
 {
 	std::ifstream	file;
-	std::string		text;
-	std::string		line;
+	std::string		text, line;
 
 	file.open(filename.c_str());
-	if (!file.is_open()) {
+	if (file.fail()) {
 		std::cout << "File not found" << std::endl;
 		exit (1);
 	}
@@ -26,7 +25,7 @@ void	replace_text_output(std::string text, std::string filename, std::string nee
 	unsigned int	position = 0;
 	std::ofstream	outfile(filename.append(".replace").c_str());
 
-	if (!outfile.is_open())
+	if (outfile.fail())
 		std::cout << "File creation failed" << std::endl;
 	while ((position = text.find(needle, i)) < text.length() && outfile.is_open())
 	{

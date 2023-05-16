@@ -100,5 +100,5 @@ void	RPN::calculateExpression(std::string exp)
 		else
 			return ((void)pError("invalid expression => " + exp, 1));
 	}
-
+	pResult();
 }

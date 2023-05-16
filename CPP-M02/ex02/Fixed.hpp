@@ -6,7 +6,7 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:34:17 by leferrei          #+#    #+#             */
-/*   Updated: 2023/04/25 19:49:40 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:53:51 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ class	Fixed
 
 };
 
-	std::ostream &operator << (std::ostream &out, const Fixed &n);
+std::ostream &operator << (std::ostream &out, const Fixed &n);
 
 #endif

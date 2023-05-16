@@ -104,36 +104,48 @@ int PmergeMe::checkPosNumbericString(std::string num)
 	return (1);
 }
 
-void PmergeMe::divideContainer(std::vector<int> &a, std::vector<int> &b)
+void PmergeMe::divideVectorPairs()
 {
-	size_t offset;
-	size_t size = a.size();
-
-	offset = !(size % 2) ? size / 2 : size / 2 + 1;
-	std::copy(a.begin() + offset, a.end(), std::back_inserter(b));
-	a.erase(a.begin() + offset, a.end());
+	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
+	{
+		std::pair<int, int> tmp;
+		if (it + 1 != _numVector.end())
+		{
+			tmp.first = *it > *(it + 1) ? *(it + 1) : *it ;
+			tmp.second = *it < *(it + 1) ? *(it + 1) : *it ;
+			it++;
+		}
+		else
+		{
+			tmp.first = *it;
+			tmp.second = -1;
+		}
+		_vecPairs.push_back(tmp);
+	}
 }
 
-void PmergeMe::insertSort(std::vector<int> &a)
+
+void PmergeMe::insertSortVectorPairs()
 {
-	for (std::vector<int>::iterator it = a.begin() + 1; it != a.end(); it++)
-		for (std::vector<int>::iterator itk = it - 1; itk >= a.begin() && *itk > *(itk + 1); --itk)
+	for (std::vector<std::pair<int, int> >::iterator it = _vecPairs.begin() + 1; it != _vecPairs.end(); it++)
+ 		for (std::vector<std::pair<int, int> >::iterator itk = it - 1; itk >= _vecPairs.begin() && (*itk).first < (*(itk + 1)).first; --itk)
 			std::iter_swap(itk, itk + 1);
 }
 
 void PmergeMe::sortVector()
 {
-	std::vector<int> tmpVector;
-	std::vector<int> result;
-
 	if (_numVector.size() <= 1)
 		return ;
-	divideContainer(_numVector, tmpVector);
-	insertSort(_numVector);
-	insertSort(tmpVector);
-	std::merge(_numVector.begin(), _numVector.end(), tmpVector.begin(), tmpVector.end(), std::back_inserter(result));
+	divideVectorPairs();
+	insertSortVectorPairs();
 	_numVector.erase(_numVector.begin(), _numVector.end());
-	std::copy(result.begin(), result.end(), std::back_inserter(_numVector));
+	for (std::vector<std::pair<int, int> >::iterator i = _vecPairs.begin(); i != _vecPairs.end(); i++)
+	{
+		_numVector.insert(_numVector.begin(), (*i).first);
+		if ((*i).second == -1)
+			continue ;
+		_numVector.insert(std::lower_bound(_numVector.begin(), _numVector.end(), (*i).second), (*i).second);
+	}
 }
 
 void PmergeMe::insertSort(std::list<int> &a)

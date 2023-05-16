@@ -5,15 +5,13 @@
 
 class HumanA
 {
-
-	public:
+	private:
 		std::string name;
 		Weapon		&weapon;
-
+	public:
 		HumanA(std::string name, Weapon &wep);
 		~HumanA(void);
 		void	attack( void ) const;
-
 };
 
 #endif

@@ -9,10 +9,13 @@ int		Zombie::getHordeSize( void ) const { return _horde_size; }
 void	Zombie::incHordeSize( void ) { _horde_size++; }
 
 Zombie::Zombie(std::string name): name(name) { 
-
 	this->index = getHordeSize();
 	incHordeSize();	
 	return ;
+}
+void	Zombie::initName(std::string name)
+{
+	this->name = name;
 }
 
 Zombie::~Zombie( void )
