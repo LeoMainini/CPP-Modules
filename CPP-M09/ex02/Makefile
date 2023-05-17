@@ -39,13 +39,13 @@ OBJS	= $(SRCS:.cpp=.o)
 
 CC		= c++
 
-CFLAGS	= -Wall -Werror -Werror -O3
+CFLAGS	= -Wall -Werror -Werror -Wshadow -O3
 
 CSTD	= -std=c++98
 
 DEBUG	= 0
 
-DFLAGS = -ggdb -fsanitize=address -Wshadow
+DFLAGS = -ggdb -fsanitize=address 
 
 INC = -I .
 
