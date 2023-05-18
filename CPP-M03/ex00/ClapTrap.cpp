@@ -44,14 +44,15 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	std::cout << this->name;
 	if (this->health == 0)
-		std::cout << this->name << " cant take any more damage, its already dead!" << std::endl;
+		std::cout << " cant take any more damage, its already dead!" << std::endl;
 	else if (this->health - amount < 0)
-		std::cout << this->name << " takes " << amount << " damage and dies! Health = 0" << std::endl;
+		std::cout << " takes " << amount << " damage and dies! Health = 0" << std::endl;
 	else
 	{
 		this->health -= amount;
-		std::cout << this->name << " takes " << amount << " damage! Health = " << this->health << std::endl;
+		std::cout << " takes " << amount << " damage! Health = " << this->health << std::endl;
 	}
 }
 
