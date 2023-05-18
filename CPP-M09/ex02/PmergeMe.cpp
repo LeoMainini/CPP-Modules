@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <ctime>
 #include <iomanip>
+// #include "biDirIterFunctions.hpp"
 
 // Must init after calling constructor
 PmergeMe::PmergeMe() : _isInit(false) {}
@@ -90,7 +91,6 @@ void	PmergeMe::runTest()
 	sortList();
 	timeSpent = (double)(clock() - start ) / clocksPerSubdivision;
 	std::cout << "Time to process a range of " << _numList.size() << " elements with std::list:	" << timeSpent << " ms" << std::endl;
-	
 }
 
 bool PmergeMe::isInitialized() { return (_isInit); }
@@ -106,11 +106,10 @@ int PmergeMe::checkPosNumbericString(std::string num)
 
 void PmergeMe::divideVectorPairs()
 {
-
+	std::pair<int, int> tmp;
 	_vecPairs.reserve(_numVector.size() / 2 + 1);
-	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); it++)
+	for (std::vector<int>::iterator it = _numVector.begin(); it != _numVector.end(); ++it)
 	{
-		std::pair<int, int> tmp;
 		if (it + 1 != _numVector.end())
 		{
 			tmp.first = *it > *(it + 1) ? *(it + 1) : *it ;
@@ -126,10 +125,9 @@ void PmergeMe::divideVectorPairs()
 	}
 }
 
-
 void PmergeMe::insertSortVectorPairs()
 {
-	for (std::vector<std::pair<int, int> >::iterator it = _vecPairs.begin() + 1; it != _vecPairs.end(); it++)
+	for (std::vector<std::pair<int, int> >::iterator it = _vecPairs.begin() + 1; it != _vecPairs.end(); ++it)
  		for (std::vector<std::pair<int, int> >::iterator itk = it - 1; itk >= _vecPairs.begin() && (*itk).first < (*(itk + 1)).first; --itk)
 			std::iter_swap(itk, itk + 1);
 }
@@ -141,56 +139,54 @@ void PmergeMe::sortVector()
 	divideVectorPairs();
 	insertSortVectorPairs();
 	_numVector.erase(_numVector.begin(), _numVector.end());
-	for (std::vector<std::pair<int, int> >::iterator i = _vecPairs.begin(); i != _vecPairs.end(); i++)
+	insertSubContainerPairs(_numVector, _vecPairs);
+}
+
+void	PmergeMe::divideListPairs()
+{
+	std::pair<int, int> tmp;
+	for (std::list<int>::iterator it = _numList.begin(); it != _numList.end(); ++it)
 	{
-		_numVector.insert(_numVector.begin(), (*i).first);
-		if ((*i).second == -1)
-			continue ;
-		_numVector.insert(std::lower_bound(_numVector.begin(), _numVector.end(), (*i).second), (*i).second);
+		if (::nextIt(_numList, it) != _numList.end())
+		{
+			tmp.first = *it > *(::nextIt(_numList, it)) ? *(::nextIt(_numList, it)) : *it ;
+			tmp.second = *it < *(::nextIt(_numList, it)) ? *(::nextIt(_numList, it)) : *it ;
+			it++;
+		}
+		else
+		{
+			tmp.first = *it;
+			tmp.second = -1;
+		}
+		_listPairs.push_back(tmp);
 	}
 }
 
-void PmergeMe::insertSort(std::list<int> &a)
+void PmergeMe::insertSortListPairs()
 {
-	std::list<int>::iterator it = a.begin();
-	std::list<int>::iterator itk;
+	typedef std::list<std::pair<int, int> >::iterator iter;
+	iter itk;
 
-	++it;
-	for (; it != a.end(); it++)
+	for (iter it = ::nextIt(_listPairs, _listPairs.begin()); it != _listPairs.end(); ++it)
 	{
-		itk = --it;
-		++it;
-		for (; itk != a.begin() && *(++itk) < *(--itk); --itk)
-			std::iter_swap(++itk, --itk);
-		itk++;
-		if (itk != a.begin() && itk != a.end() && *itk < *a.begin())
-			std::iter_swap(itk, a.begin());
+		itk = ::prevIt(_listPairs, it);
+		for ( ; itk != _listPairs.begin() && *itk < *::nextIt(_listPairs, itk); --itk)
+			std::iter_swap(itk, ::nextIt(_listPairs, itk));
+		++itk;
+		if (itk != _listPairs.begin() && itk != _listPairs.end() && *itk > *_listPairs.begin())
+			std::iter_swap(itk, _listPairs.begin());
 	}
-}
-
-void PmergeMe::divideContainer(std::list<int> &a, std::list<int> &b)
-{
-	size_t offset;
-	std::list<int>::iterator it = a.begin();
-	size_t size = a.size();
-	
-	offset = !(size % 2) ? size / 2 : size / 2 + 1;
-	for (; it != a.end() && offset--; it++) { }
-	std::copy(it, a.end(), std::back_inserter(b));
-	a.erase(it, a.end());
 }
 
 void PmergeMe::sortList()
 {
-	std::list<int> tmpList;
-	std::list<int> result;
-
 	if (_numList.size() <= 1)
 		return ;
-	divideContainer(_numList, tmpList);
-	insertSort(tmpList);
-	insertSort(_numList);
-	_numList.merge(tmpList);
+	divideListPairs();
+	insertSortListPairs();
+	_numList.erase(_numList.begin(), _numList.end());
+	insertSubContainerPairs(_numList, _listPairs);
+
 }
 
 int PmergeMe::pError(std::string msg, int code)
