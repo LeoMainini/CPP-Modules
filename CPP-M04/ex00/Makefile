@@ -33,7 +33,7 @@ IPurple		= \033[0;95m
 ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
-SRCS	= main.cpp	Animal.cpp	Cat.cpp	Dog.cpp
+SRCS	= main.cpp	Animal.cpp	Cat.cpp	Dog.cpp DogInDisguise.cpp Animalish.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
@@ -49,7 +49,7 @@ DFLAGS = -ggdb -fsanitize=address -Wshadow
 
 INC = -I .
 
-NAME	= st
+NAME	= woaawww
 
 all:	$(NAME)
 
