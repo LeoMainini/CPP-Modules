@@ -6,13 +6,13 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:17:29 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/08 15:36:23 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:27:17 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog( void ): Animal(), bb(new (std::nothrow) Brain()){
+Dog::Dog( void ): AAnimal(), bb(new (std::nothrow) Brain()){
 	std::cout << " - dog in construction..... ";
 	if (bb)
 	{
@@ -40,7 +40,7 @@ Dog &Dog::operator = (const Dog &a) {
 			*bb = *a.bb;
 		else
 			std::cout << "Brain copy alloDogion failed" << std::endl;
-		Animal::_type = a.get_type();
+		AAnimal::_type = a.get_type();
 	}
 	return (*this);
 }

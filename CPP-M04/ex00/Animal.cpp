@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal( void ){}
+AAnimal::AAnimal( void ){}
 
-Animal::Animal(const Animal &a)
+AAnimal::AAnimal(const AAnimal &a)
 {
 	*this = a;
 }
 
-Animal &Animal::operator= (const Animal &a)
+AAnimal &AAnimal::operator= (const AAnimal &a)
 {
 	if (this != &a)
 		_type = a._type;
 	return (*this);
 }
 
-Animal::~Animal( void ) {}
+AAnimal::~AAnimal( void ) {}
 
-const std::string &Animal::get_type( void ) const { return (_type); }
+const std::string &AAnimal::get_type( void ) const { return (_type); }
 
-void	Animal::makeSound( void ) const 
+void	AAnimal::makeSound( void ) const 
 {
 	if (_type == "Cat")
 		std::cout << "Miaaaaawwooo" << std::endl;

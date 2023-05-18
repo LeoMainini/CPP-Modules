@@ -6,11 +6,11 @@
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:07:59 by leferrei          #+#    #+#             */
-/*   Updated: 2023/03/24 14:25:49 by leferrei         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:28:06 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
@@ -19,8 +19,8 @@ int	main( void )
 	std::cout << "CONSTRUCTIONS\n\n";
 	Cat	*b = new Cat();
 	Dog	*c = new Dog();
-	Animal	&d = *b;
-	Animal	*a = c;
+	AAnimal	&d = *b;
+	AAnimal	*a = c;
 	Dog		*dog = new Dog();
 	Dog		dog2(*dog);
 

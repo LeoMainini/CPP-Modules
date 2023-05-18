@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leferrei <leferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal( void ){
-	std::cout << "Animal constructed" << std::endl;
+AAnimal::AAnimal( void ){
+	std::cout << "AAnimal constructed" << std::endl;
 }
 
-Animal::Animal(const Animal &a)
+AAnimal::AAnimal(const AAnimal &a)
 {
-	std::cout << "Animal constructed" << std::endl;
+	std::cout << "AAnimal constructed" << std::endl;
 	*this = a;
 }
 
-Animal &Animal::operator= (const Animal &a)
+AAnimal &AAnimal::operator= (const AAnimal &a)
 {
-	std::cout << "Animal assigned" << std::endl;
+	std::cout << "AAnimal assigned" << std::endl;
 	if (this != &a)
 		_type = a._type;
 	return (*this);
 }
 
-Animal::~Animal( void ) {
-	std::cout << "Animal Destructed" << std::endl;
+AAnimal::~AAnimal( void ) {
+	std::cout << "AAnimal Destructed" << std::endl;
 }
 
-const std::string &Animal::get_type( void ) const { return (_type); }
+const std::string &AAnimal::get_type( void ) const { return (_type); }

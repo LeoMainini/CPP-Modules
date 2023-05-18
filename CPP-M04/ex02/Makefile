@@ -33,7 +33,7 @@ IPurple		= \033[0;95m
 ICyan		= \033[0;96m
 IWhite		= \033[0;97m
 
-SRCS	= main.cpp	Animal.cpp	Cat.cpp	Dog.cpp Brain.cpp
+SRCS	= main.cpp	AAnimal.cpp	Cat.cpp	Dog.cpp Brain.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
